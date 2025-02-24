@@ -61,6 +61,10 @@ function playRound(humanChoice, computerChoice) {
   // If choices are the same, it's a tie.
   if (humanChoice === computerChoiceStr) {
     result = console.log("It's a tie");
+
+    // Rock (0) beats Scissors (2), Paper (1) beats Rock (0), Scissors (2) beats Paper (1).
+    // Console log a message like "You lose! Paper beats Rock".
+    // Increase humanScore or computerScore based on the winner.
   } else if (
     (humanChoice == 'rock' && computerChoiceStr == 'scissors') ||
     (humanChoice == 'paper' && computerChoiceStr == 'rock') ||
@@ -73,16 +77,13 @@ function playRound(humanChoice, computerChoice) {
     computerScore += 1;
   }
 
-  // Rock (0) beats Scissors (2), Paper (1) beats Rock (0), Scissors (2) beats Paper (1).
-  // Console log a message like "You lose! Paper beats Rock".
-  // Increase humanScore or computerScore based on the winner.
   // Return the round result.
   return result;
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-playRound(humanSelection, computerSelection);
+const human = getHumanChoice();
+const computer = getComputerChoice();
+playRound(human, computer);
 
 console.log(`Computer Score: ${computerScore}`)
 console.log(`Human Score: ${humanScore}`);
