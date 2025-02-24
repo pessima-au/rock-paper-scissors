@@ -19,13 +19,14 @@ const paper = 1;
 const scissors = 2;
 */
 
-
 // Step 3:
 // Get Human's Choice
 // Declare a function getHumanChoice().
 function getHumanChoice() {
   // Prompt the user to enter a 'rock', 'paper' or 'scissors'.
-  const choice = prompt("Please enter 'rock', 'paper' or 'scissors': ").toLowerCase();
+  const choice = prompt(
+    "Please enter 'rock', 'paper' or 'scissors': "
+  ).toLowerCase();
   // If the input is invalid (not rock, paper, or scissors), prompt again until a valid input is given.
   if (choice != "rock" && choice !== "paper" && choice !== "scissors") {
     return getHumanChoice();
@@ -42,48 +43,67 @@ let humanScore = 0;
 // Create computerScore variable and initialize it to 0.
 let computerScore = 0;
 
-// Step 5:
-// Play One Round
-// Create a function playRound(humanChoice, computerChoice).
-function playRound(humanChoice, computerChoice) {
-  // Convert computerChoice int into a string.
-  let computerChoiceStr;
-  if (computerChoice == 0) {
-    computerChoiceStr = 'rock';
-  } else if (computerChoice == 1) {
-    computerChoiceStr = 'paper';
-  } else if (computerChoice == 2) {
-    computerChoiceStr = 'scissors';
+// Step 6:
+// Declare a function playGame().
+//Move the playRound function into playGame().
+//Use loop to play the game five rounds.
+//Track and display results.
+function playGame() {
+  for (let i = 1; i <= 5; i++) {
+    const human = getHumanChoice();
+    const computer = getComputerChoice();
+    playRound(human, computer);
   }
 
-  // Compare humanChoice and computerChoice:
-  let result;
-  // If choices are the same, it's a tie.
-  if (humanChoice === computerChoiceStr) {
-    result = console.log("It's a tie");
+    // Step 5:
+    // Play One Round
+    // Create a function playRound(humanChoice, computerChoice).
+    function playRound(humanChoice, computerChoice) {
+      // Convert computerChoice int into a string.
+      let computerChoiceStr;
+      if (computerChoice == 0) {
+        computerChoiceStr = "rock";
+      } else if (computerChoice == 1) {
+        computerChoiceStr = "paper";
+      } else if (computerChoice == 2) {
+        computerChoiceStr = "scissors";
+      }
 
-    // Rock (0) beats Scissors (2), Paper (1) beats Rock (0), Scissors (2) beats Paper (1).
-    // Console log a message like "You lose! Paper beats Rock".
-    // Increase humanScore or computerScore based on the winner.
-  } else if (
-    (humanChoice == 'rock' && computerChoiceStr == 'scissors') ||
-    (humanChoice == 'paper' && computerChoiceStr == 'rock') ||
-    (humanChoice == 'scissors' && computerChoiceStr == 'paper')
-  ) {
-    result = console.log(`You win! ${humanChoice} beats ${computerChoiceStr}`);
-    humanScore += 1;
-  } else {
-    result = console.log(`You lose! ${computerChoiceStr} beats ${humanChoice}`);
-    computerScore += 1;
-  }
+      // Compare humanChoice and computerChoice:
+      let result;
+      // If choices are the same, it's a tie.
+      if (humanChoice === computerChoiceStr) {
+        result = console.log("It's a tie");
 
-  // Return the round result.
-  return result;
+        // Rock (0) beats Scissors (2), Paper (1) beats Rock (0), Scissors (2) beats Paper (1).
+        // Console log a message like "You lose! Paper beats Rock".
+        // Increase humanScore or computerScore based on the winner.
+      } else if (
+        (humanChoice == "rock" && computerChoiceStr == "scissors") ||
+        (humanChoice == "paper" && computerChoiceStr == "rock") ||
+        (humanChoice == "scissors" && computerChoiceStr == "paper")
+      ) {
+        result = console.log(
+          `You win! ${humanChoice} beats ${computerChoiceStr}`
+        );
+        humanScore += 1;
+      } else {
+        result = console.log(
+          `You lose! ${computerChoiceStr} beats ${humanChoice}`
+        );
+        computerScore += 1;
+      }
+
+      // Return the round result.
+      return result;
+    }
 }
+playGame();
 
-const human = getHumanChoice();
-const computer = getComputerChoice();
-playRound(human, computer);
+console.log("");
+console.log("Game Over");
+console.log("Final Score");
+console.log("---------------------------------");
 
-console.log(`Computer Score: ${computerScore}`)
+console.log(`Computer Score: ${computerScore}`);
 console.log(`Human Score: ${humanScore}`);
